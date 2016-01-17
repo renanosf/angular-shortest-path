@@ -39,7 +39,7 @@ angular.module('angularShortestPath', [])
 		setPaintedPoints : function(tempPoints,generation,best,number){
 			var code = String.fromCharCode(65 + number);
 			_paintedPoints.push(new google.maps.Marker({
-							position : new google.maps.LatLng(tempPoints[generation[best][number]].k,tempPoints[generation[best][number]].D),
+							position : new google.maps.LatLng(tempPoints[generation[best][number]].lat(),tempPoints[generation[best][number]].lng()),
 							map : _map,
 							icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + code + '|66CC66|000000'
 							})
@@ -83,13 +83,13 @@ angular.module('angularShortestPath', [])
 			_points = [];
 			_endPoint = null;
 			_pointsDescribed = [];
-			_startPoint = new google.maps.LatLng(startPoint.geometry.location.k,startPoint.geometry.location.D);
+			_startPoint = new google.maps.LatLng(startPoint.geometry.location.lat(),startPoint.geometry.location.lng());
 			_pointsDescribed.push(startPoint);
 			for(var i=0; i < points.length; i++){
-				_points.push(new google.maps.LatLng(points[i].geometry.location.k,points[i].geometry.location.D));
+				_points.push(new google.maps.LatLng(points[i].geometry.location.lat(),points[i].geometry.location.lng()));
 				_pointsDescribed.push(points[i]);
 			}
-			_endPoint = new google.maps.LatLng(endPoint.geometry.location.k,endPoint.geometry.location.D);
+			_endPoint = new google.maps.LatLng(endPoint.geometry.location.lat(),endPoint.geometry.location.lng());
 			_pointsDescribed.push(endPoint);
 		},
 		getPointsDescribed : function(){
